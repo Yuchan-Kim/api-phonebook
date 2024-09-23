@@ -84,10 +84,10 @@
 <update id="update" parameterType="com.javaex.vo.PersonVo">
 		<![CDATA[ 
 			update person
-			set name = ${name},
-				hp = ${hp},
-			    company = ${company}
-			where person_id = ${personId}
+			set name = #{name},
+				hp = #{hp},
+			    company = #{company}
+			where person_id = #{personId}
 		
 		]]>
 </update>
