@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="phonebook">
+
+<resultMap id="resultMapPersonVo" type="com.javaex.vo.PersonVo">
+	<result column="person_id" property="personId" />
+	<result column="name" property="name" />
+	<result column="hp" property="hp" />
+	<result column="company" property="company" />
+</resultMap>
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="int">
+		<![CDATA[     
+			delete from person
+			where person_id = #{personId}
+		]]>
+</delete>
+
+
+<!-- 저장 -->
+<insert id="insert" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[   
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+		]]>
+</insert>
+
+<!-- 저장 -->
+<insert id="insert2" parameterType="map">
+		<![CDATA[   
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+		]]>
+</insert>
+
+
+
+<!-- 전체 가져오기 -->
+<select id="selectList" resultType="PersonVo">
+		<![CDATA[ 
+			select 	person_id personId,
+					name,   
+			        hp,     
+			        company  
+			from person
+		]]>
+</select>
+
+<!-- 전체 가져오기 -->
+<!-- <select id="selectList" resultMap="resultMapPersonVo"> <![CDATA[ select person_id, name, hp, company from person ]]> </select> -->
+
+
+
+<!-- 1개 가져오기 -->
+<select id="selectOneMap" parameterType="int" resultType="map">
+		<![CDATA[ 
+			select 	person_id personId,
+					name,
+			        hp,
+			        company
+			from person
+			where person_id = #{no}
+		]]>
+</select>
+
+<!-- 1개 가져오기 -->
+
+<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[ 
+			select 	person_id personId,
+					name,
+			        hp,
+			        company
+			from person
+			where person_id = #{no}
+		]]>
+</select>
+
+
+
+<!-- 수정 -->
+<update id="update" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[ 
+			update person
+			set name = ${name},
+				hp = ${hp},
+			    company = ${company}
+			where person_id = ${personId}
+		
+		]]>
+</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
