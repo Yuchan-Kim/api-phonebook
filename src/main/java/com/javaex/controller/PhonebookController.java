@@ -46,7 +46,7 @@ public class PhonebookController {
 		
 		int count = phonebookService.exePersonDelete(no);
 		if (count != 1) {
-			return JsonResult.success(count);
+			return JsonResult.fail("실패");
 		}else {
 			return JsonResult.success(count);
 		}
